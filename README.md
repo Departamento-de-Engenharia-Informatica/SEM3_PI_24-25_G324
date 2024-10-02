@@ -1,1 +1,1 @@
-# sem3_pi_2024_g324
+# 3rd Semester's Integrative Project Assignment, Group 324
