@@ -16,18 +16,45 @@ The primary goal is to create a software application that effectively tackles th
 - **Real-time Monitoring**: Oversight of machine operations for enhanced control.
 - **Maintenance Scheduling**: Preventive maintenance management to minimize downtime.
 
-## Requirements
-- **Functional Requirements**:
-  - Manage production orders.
-  - Monitor machine operations.
-  - Schedule maintenance tasks.
+## Architecture
+The system architecture consists of several interconnected components, including the use of Java for backend logic, C & Assembly for machine communication, and Oracle PL/SQL for database operations. The system uses CSV files for importing/exporting data and ODBC for database connectivity.
 
-- **Non-Functional Requirements**:
-  - High availability and reliability.
-  - Security features for user data protection.
-  - Scalability to accommodate future growth.
+## Architecture Diagram
+(Insert your architecture diagram here)
+
+## Modules
+- **Java-based applications** for managing production and plant operations.
+- **Machine supervision** using Raspberry Pi and text file communication.
+- **Oracle PL/SQL** for managing databases and plant-floor operations.
+
+## Technologies Used
+- **Java**: Core business logic.
+- **C & Assembly**: Communicating with machines and sensors via Raspberry Pi.
+- **Oracle PL/SQL**: Database management for production data.
+- **CSV**: For data import/export between systems.
+- **ODBC**: For database connectivity.
+
+## Directory Structure
+
+
+## Modules Description
+- **Machine Supervisor**: Supervise and monitor machine operations using sensors and actuators via Raspberry Pi.
+- **Plant Floor Manager**: Manages the production tasks and machine workflows on the shop floor.
+- **Production Plan Simulator**: Simulates production scenarios for planning and resource optimization.
+- **Project Manager**: Manages project-related tasks, schedules, and overall production workflow.
 
 ## Installation
+### Prerequisites
+- Java (version 23)
+- Oracle Database
+- Raspberry PI (for machine control)
+- ODBC Drivers
+### Steps
 1. Clone the repository:
    ```bash
    git clone https://github.com/1150475/SEM3_PI_24-25_G324.git
+2. Open the project in IntelliJ IDEA or any compatible IDE.
+3. Run the Production Plan Simulator from `prodPlanSimulator/src/Main.java.`
+4. Set up the Oracle Database using the SQL schema provided in the documentation folder.
+5. Use ODBC drivers to connect the Plant Floor Manager to the database for data processing.
+6. Deploy the Machine Supervisor module on Raspberry Pi for real-time machine monitoring.
