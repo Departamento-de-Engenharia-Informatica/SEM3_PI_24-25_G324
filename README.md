@@ -17,7 +17,7 @@ The primary goal is to create a software application that effectively tackles th
 - **Maintenance Scheduling**: Preventive maintenance management to minimize downtime.
 
 ## Architecture
-The system architecture consists of several interconnected components, including the use of Java for backend logic, C & Assembly for machine communication, and Oracle PL/SQL for database operations. The system uses CSV files for importing/exporting data and ODBC for database connectivity.
+The system architecture consists of several interconnected components, including the use of **Java** for backend logic, **C & Assembly** for machine communication, and **Oracle PL/SQL** for database operations. The system uses **CSV files** for importing/exporting data and **ODBC** for database connectivity.
 
 ## Architecture Diagram
 (Insert your architecture diagram here)
@@ -49,7 +49,7 @@ The system architecture consists of several interconnected components, including
 - Oracle Database
 - Raspberry PI (for machine control)
 - ODBC Drivers
-### Steps
+### Steps:
 1. Clone the repository:
    ```bash
    git clone https://github.com/1150475/SEM3_PI_24-25_G324.git
