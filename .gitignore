@@ -20,10 +20,6 @@
 *.gch
 *.pch
 
-# Ignore Visual Paradigm temporary files
-*.bak_*
-*.lck
-
 # Libraries
 *.lib
 *.a
