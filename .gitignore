@@ -21,7 +21,7 @@
 *.pch
 
 # Ignore Visual Paradigm temporary files
-*.bak
+*.bak_*
 *.lck
 
 # Libraries
