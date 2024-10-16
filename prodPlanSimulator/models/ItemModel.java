@@ -1,74 +1,76 @@
 package prodPlanSimulator.models;
 
+import java.util.LinkedList;
+
 public class ItemModel {
-    private String code;
-    private String name;
-    private String description;
-    private double price;
-    private int productionTime;
-    private MachineModel machine;
-    private int quantity;
+    private static int idnext = 1;
+    private int id;
+    private String articleId;
+    private String prioraty;
+    private LinkedList<String> operation;
 
     /**
      * Constructor for ItemModel
      *
-     * @param code
-     * @param name
-     * @param description
-     * @param price
-     * @param productionTime
-     * @param machine
-     * @param quantity
+     * @param id
+     * @param prioraty
+     * @param operation
      */
-    public ItemModel(String code, String name, String description, double price, int productionTime, MachineModel machine, int quantity) {
-        this.code = code;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.productionTime = productionTime;
-        this.machine = machine;
-        this.quantity = quantity;
+    public ItemModel(String articleId, String prioraty, LinkedList<String> operation) {
+        this.id = idnext++;
+        this.articleId = articleId;
+        this.prioraty = prioraty;
+        this.operation = operation;
     }
 
-    public String getCode() {
-        return code;
+    /**
+     * Getter for id
+     *
+     * @return id of item
+     */
+    public int getId() {
+        return id;
     }
 
-    public String getName() {
-        return name;
+    /**
+     * Getter for articleId
+     *
+     * @return article Id of item
+     */
+    public String getArticleId() {
+        return articleId;
     }
 
-    public String getDescription() {
-        return description;
+    /**
+     * Getter for prioraty
+     *
+     * @return prioraty of item
+     */
+    public String getPrioraty() {
+        return prioraty;
     }
 
-    public double getPrice() {
-        return price;
+    /**
+     * Getter for operation
+     *
+     * @return operations of item
+     */
+    public LinkedList<String> getOperation() {
+        return operation;
     }
 
-    public int getProductionTime() {
-        return productionTime;
-    }
-
-    public MachineModel getMachine() {
-        return machine;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-
+    /**
+     * toString method for ItemModel
+     *
+     * @return String of ItemModel
+     */
     @Override
     public String toString() {
         return "ItemModel{" +
-                "code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", productionTime=" + productionTime +
-                ", machine=" + machine +
-                ", quantity=" + quantity +
+                "ID='" + id + '\'' +
+                ", articleId='" + articleId + '\'' +
+                ", prioraty='" + prioraty + '\'' +
+                ", operation='" + operation + '\'' +
                 '}';
     }
 }

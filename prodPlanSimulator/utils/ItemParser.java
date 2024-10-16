@@ -1,35 +1,30 @@
 package prodPlanSimulator.utils;
-
 import prodPlanSimulator.models.*;
+import java.util.LinkedList;
 
 public class ItemParser implements DataParser<ItemModel> {
-    private DataManager<MachineModel> machineManager;
-
-    public ItemParser(DataManager<MachineModel> machineManager) {
-        this.machineManager = machineManager;
-    }
-
+    /**
+     * Parse the data and return an object
+     *
+     * @param data the data to be parsed
+     * @return the object parsed or null if the data is invalid
+     */
     @Override
     public ItemModel parse(String[] data) {
-        if (data.length == 7) {
-            String code = data[0].trim();
-            String name = data[1].trim();
-            String description = data[2].trim();
-            double price = Double.parseDouble(data[3].trim());
-            int productionTime = Integer.parseInt(data[4].trim());
-            String machineName = data[5].trim();
-            int quantity = Integer.parseInt(data[6].trim());
-
-            MachineModel machine = null;
-            for (MachineModel m : machineManager.getAllItems()) {
-                if (m.getName().equals(machineName)) {
-                    machine = m;
-                    break;
+        if (data.length > 0) {
+            String article = data[0].trim();
+            String priority = data[1].trim();
+            LinkedList nameOperations = new LinkedList();
+            // As operações começam a partir do índice 2
+            for (int i = 2; i < data.length; i++) {
+                if (!data[i].trim().isEmpty()) {
+                    nameOperations.add(data[i].trim());
                 }
             }
 
-            if (machine != null) {
-                return new ItemModel(code, name, description, price, productionTime, machine, quantity);
+            ItemModel item = null;
+            if (!article.isEmpty() && !priority.isEmpty() && !nameOperations.isEmpty()) {
+                return new ItemModel(article, priority, nameOperations);
             }
         }
         return null;
