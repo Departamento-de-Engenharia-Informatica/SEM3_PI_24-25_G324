@@ -1,73 +1,63 @@
 package prodPlanSimulator.controllers;
 
 import prodPlanSimulator.models.ItemModel;
+import prodPlanSimulator.models.MachineModel;
+import prodPlanSimulator.utils.DataManager;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Scanner;
 
 public class ItemController {
-    private List<ItemModel> items;
+    Scanner scanner = new Scanner(System.in);
+    public void AddItem(DataManager<ItemModel> manager, DataManager<MachineModel> machineManager) {
+        System.out.println("Add new item");
+        System.out.println("Enter the item code:");
+        String code = scanner.nextLine();
+        System.out.println("Enter the item name:");
+        String name = scanner.nextLine();
+        System.out.println("Enter the item description:");
+        String description = scanner.nextLine();
+        System.out.println("Enter the item price:");
+        double price = Double.parseDouble(scanner.nextLine());
+        System.out.println("Enter the item production time:");
+        int productionTime = Integer.parseInt(scanner.nextLine());
+        System.out.println("Enter the item machine name:");
+        String machineName = scanner.nextLine();
+        System.out.println("Enter the item quantity:");
+        int quantity = Integer.parseInt(scanner.nextLine());
 
-    public ItemController() {
-        this.items = new LinkedList<>();
-    }
-
-    public void addItem(ItemModel item) {
-        items.add(item);
-    }
-
-    public void removeItem(ItemModel item) {
-        items.remove(item);
-    }
-
-    public List<ItemModel> getItems() {
-        return items;
-    }
-
-    public ItemModel getItemByName(String name) {
-        for (ItemModel item : items) {
-            if (item.getName().equals(name)) {
-                return item;
+        MachineModel machine = null;
+        for (MachineModel m : machineManager.getAllItems()) {
+            if (m.getName().equals(machineName)) {
+                machine = m;
+                break;
             }
         }
-        return null;
+        if (machine != null) {
+            ItemModel newItem = new ItemModel(code, name, description, price, productionTime, machine, quantity);
+            manager.addItem(newItem);
+            System.out.println("Item added successfully");
+        } else {
+            System.out.println("Machine not found");
+        }
     }
 
-    public ItemModel getItemByCode(String code) {
-        for (ItemModel item : items) {
+    public void RemoveItem(DataManager<ItemModel> manager) {
+        System.out.println("Enter the item code to remove:");
+        String code = scanner.nextLine();
+        for (ItemModel item : manager.getAllItems()) {
             if (item.getCode().equals(code)) {
-                return item;
+                manager.removeItem(item);
+                System.out.println("Item removed successfully");
+                return;
             }
         }
-        return null;
+        System.out.println("Item not found");
     }
 
-    public ItemModel getItemByDescription(String description) {
-        for (ItemModel item : items) {
-            if (item.getDescription().equals(description)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    public void updateItem(ItemModel item) {
-        for (ItemModel i : items) {
-            if (i.getCode().equals(item.getCode())) {
-                i.setName(item.getName());
-                i.setDescription(item.getDescription());
-                i.setPrice(item.getPrice());
-                i.setProductionTime(item.getProductionTime());
-                i.setMachine(item.getMachine());
-            }
-        }
-    }
-
-    public void printItems() {
-        for (ItemModel item : items) {
+    public void PrintItems(DataManager<ItemModel> manager) {
+        System.out.println("Items:");
+        for (ItemModel item : manager.getAllItems()) {
             System.out.println(item);
         }
     }
-
-
 }

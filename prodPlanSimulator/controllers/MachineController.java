@@ -1,61 +1,42 @@
 package prodPlanSimulator.controllers;
 
 import prodPlanSimulator.models.MachineModel;
-import java.util.LinkedList;
-import java.util.List;
+import prodPlanSimulator.utils.DataManager;
+
+import java.util.Scanner;
 
 public class MachineController {
-    private List<MachineModel> machines;
+   Scanner scanner = new Scanner(System.in);
+    public void AddMachine(DataManager<prodPlanSimulator.models.MachineModel> manager) {
+        System.out.println("Add new machine");
+        System.out.println("Enter the machine name:");
+        String name = scanner.nextLine();
+        System.out.println("Enter the machine model:");
+        String model = scanner.nextLine();
+        System.out.println("Enter the machine year:");
+        int year = Integer.parseInt(scanner.nextLine());
 
-    public MachineController(List<MachineModel> machines) {
-        this.machines = new LinkedList<>();
+        prodPlanSimulator.models.MachineModel newmachine = new prodPlanSimulator.models.MachineModel(name, model, year);
+        manager.addItem(newmachine);
+        System.out.println("Machine added successfully");
     }
 
-    public MachineController() {
-        this.machines = new LinkedList<>();
-    }
-
-    public void addMachine(MachineModel machine) {
-        machines.add(machine);
-    }
-
-    public void removeMachine(MachineModel machine) {
-        machines.remove(machine);
-    }
-
-    public List<MachineModel> getMachines() {
-        return machines;
-    }
-
-    public MachineModel getMachineByName(String name) {
-        for (MachineModel machine : machines) {
+    public void RemoveMachine(DataManager<prodPlanSimulator.models.MachineModel> manager) {
+        System.out.println("Enter the machine name to remove:");
+        String name = scanner.nextLine();
+        for (prodPlanSimulator.models.MachineModel machine : manager.getAllItems()) {
             if (machine.getName().equals(name)) {
-                return machine;
+                manager.removeItem(machine);
+                System.out.println("Machine removed successfully");
+                return;
             }
         }
-        return null;
+        System.out.println("Machine not found");
     }
 
-    public MachineModel getMachineByModel(String model) {
-        for (MachineModel machine : machines) {
-            if (machine.getModel().equals(model)) {
-                return machine;
-            }
-        }
-        return null;
-    }
-
-    public void updateMachine(MachineModel machine) {
-        for (MachineModel m : machines) {
-            if (m.getName().equals(machine.getName())) {
-                m.setModel(machine.getModel());
-                m.setYear(machine.getYear());
-            }
-        }
-    }
-
-    public void printMachines() {
-        for (MachineModel machine : machines) {
+    public void PrintMachines(DataManager<MachineModel> manager) {
+        System.out.println("Machines:");
+        for (MachineModel machine : manager.getAllItems()) {
             System.out.println(machine);
         }
     }
