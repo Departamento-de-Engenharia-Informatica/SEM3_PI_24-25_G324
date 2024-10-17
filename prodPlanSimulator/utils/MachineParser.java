@@ -30,7 +30,7 @@ public class MachineParser implements DataParser<MachineModel> {
             if (!idWorkstation.isEmpty() && !nameOper.isEmpty() && time > 0) {
                 for (MachineModel machine : MachineManager.getAllItems("machines")) {
                     if (machine.getWorkstation().equals(idWorkstation)) {
-                        System.out.println("Erro: idWorkstation já existe na lista.");
+                        System.out.println("Error: idWorkstation already exists on the list.");
                         return null;
                     }
                 }

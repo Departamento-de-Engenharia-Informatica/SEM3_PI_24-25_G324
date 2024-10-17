@@ -59,6 +59,9 @@ public class ItemModel {
         return operation;
     }
 
+    public static void resetId() {
+        idnext = 1;
+    }
     /**
      * toString method for ItemModel
      *

@@ -27,7 +27,7 @@ public class Main {
         while (true) {
             System.out.println("Menu:");
             System.out.println("1. Load the machines file");
-            System.out.println("2. Load the items file");;
+            System.out.println("2. Load the items file");
             System.out.println("3. Print machines");
             System.out.println("4. Print items");
             System.out.println("5. Exit");

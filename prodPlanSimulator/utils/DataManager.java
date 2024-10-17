@@ -3,16 +3,18 @@ package prodPlanSimulator.utils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import prodPlanSimulator.models.ItemModel;
 
 public class DataManager<T> {
-    private Map<String, List<T>> dataMap;  // Mapa para armazenar diferentes listas para tipos
+    private Map<String, List<T>> dataMap;
 
     /**
      * Constructor for DataManager
      */
     public DataManager() {
-        this.dataMap = new HashMap<>();  // Inicializa o mapa para armazenar as listas
+        this.dataMap = new HashMap<>();
     }
+
     /**
      * Add item to the specific list in the dataMap
      *
@@ -25,7 +27,7 @@ public class DataManager<T> {
 
         if (!dataList.contains(Item)) {
             dataList.add(Item);
-        }else {
+        } else {
             System.out.println("Item already exists");
         }
     }
@@ -51,7 +53,7 @@ public class DataManager<T> {
         List<T> datalist = dataMap.get(type);
         if (datalist != null && index >= 0 && index < datalist.size()) {
             return datalist.get(index);
-        }else {
+        } else {
             System.out.println("Index out of bounds");
             return null;
         }
@@ -60,10 +62,10 @@ public class DataManager<T> {
     /**
      * Load the CSV file for a specific type
      *
-     * @param manager  the manager to add the item
-     * @param parser   parser to parse the data
-     * @param type     type of the file (e.g., "machines", "items")
-     * @param scanner  scanner to read the input
+     * @param manager the manager to add the item
+     * @param parser  parser to parse the data
+     * @param type    type of the file (e.g., "machines", "items")
+     * @param scanner scanner to read the input
      */
     public <T> void LoadFile(DataManager<T> manager, DataParser<T> parser, String type, Scanner scanner) {
         System.out.println("Enter the path of the " + type + " file (ex: C:/path/to/" + type + ".csv):");
@@ -71,10 +73,15 @@ public class DataManager<T> {
         File file = new File(path);
 
         if (file.exists() && file.isFile()) {
-            // Se já existir uma lista para esse tipo, limpa antes de adicionar novos itens
+            // if exists a list of that type, clear it before add new items
             if (manager.dataMap.containsKey(type)) {
                 manager.dataMap.put(type, new LinkedList<>());
                 System.out.println(type + " list cleared");
+
+                if (type.equalsIgnoreCase("items")) {
+                    ItemModel.resetId();
+                    System.out.println("ItemModel ID reset");
+                }
             }
 
             try (Scanner fileScanner = new Scanner(file)) {
@@ -97,5 +104,4 @@ public class DataManager<T> {
             System.out.println("Invalid file path or file does not exist");
         }
     }
-
 }
