@@ -59,6 +59,9 @@ public class ItemModel {
         return operation;
     }
 
+    /**
+     * Reset the id to 1
+     */
     public static void resetId() {
         idnext = 1;
     }
