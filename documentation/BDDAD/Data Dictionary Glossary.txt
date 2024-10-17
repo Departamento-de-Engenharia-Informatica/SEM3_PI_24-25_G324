@@ -1,93 +1,123 @@
-# Data Dictionary / Glossary Display
+# Data Dictionary / Glossary
 
 This document provides an overview of the tables and their associated fields used in the database.
 
 1. Table: clients
- 
-| Column        | Type         | Description                                     |
-|---------------|--------------|-------------------------------------------------|
-| id            | Integer(10)  | Primary Key, Unique identifier for the client.  |
-| name          | Varchar(100) | The name of the client.                         |
-| address       | Varchar(255) | The physical address of the client.             |
-| telephone     | Varchar(20)  | The contact telephone number of the client.     |
-| email         | Varchar(100) | The email address of the client.                |
- 
+
+| Column       | Type         | Description                                     |
+|--------------|--------------|-------------------------------------------------|
+| id           | Integer(10)  | Primary Key, Unique identifier for the client.  |
+| name         | Varchar(255) | The name of the client.                         |
+| address      | Varchar(255) | The physical address of the client.             |
+| phone_number | Varchar(20)  | The contact phone number of the client.         |
+| email        | Varchar(255) | The email address of the client.                |
+
 2. Table: orders
- 
-| Column          | Type         | Description                                      |
-|-----------------|--------------|--------------------------------------------------|
-| id              | Integer(10)  | Primary Key, Unique identifier for the order.    |
-| id_client       | Integer(10)  | Foreign Key, References clients(id).             |
-| id_operator     | Integer(10)  | Foreign Key, References operators(id).           |
-| order_date      | Date         | The date the order was placed.                   |
-| deadline        | Date         | The expected deadline for completing the order.  |
- 
-3. Table: operators
- 
+
+| Column     | Type         | Description                                       |
+|------------|--------------|---------------------------------------------------|
+| id         | Integer(10)  | Primary Key, Unique identifier for the order.     |
+| order_date | Timestamp    | The date the order was placed.                    |
+| status     | Integer(10)  | Status of the order.                              |
+| clientid   | Integer(10)  | Foreign Key, References clients(id).              |
+
+3. Table: manufacturing_orders
+
+| Column         | Type         | Description                                       |
+|----------------|--------------|---------------------------------------------------|
+| id             | Integer(10)  | Primary Key, Unique identifier for the manufacturing order. |
+| start_date     | Timestamp    | The date when the manufacturing order started.    |
+| end_date       | Timestamp    | The date when the manufacturing order finished.   |
+| status         | Integer(10)  | Status of the manufacturing order.                |
+| ordersid       | Integer(10)  | Foreign Key, References orders(id).               |
+| productsid     | Integer(10)  | Foreign Key, References products(id).             |
+
+4. Table: products
+
+| Column       | Type          | Description                                      |
+|--------------|---------------|--------------------------------------------------|
+| id           | Integer(10)   | Primary Key, Unique identifier for the product.  |
+| name         | Varchar(255)  | The name of the product.                         |
+| description  | Varchar(255)  | Detailed description of the product.             |
+| price        | Decimal(19,2) | The price of the product.                        |
+| variantid    | Integer(10)   | Foreign Key, References variants(id).            |
+
+5. Table: variants
+
+| Column             | Type         | Description                                        |
+|--------------------|--------------|----------------------------------------------------|
+| id                 | Integer(10)  | Primary Key, Unique identifier for the variant.    |
+| name               | Varchar(255) | The name of the variant.                           |
+| description        | Varchar(255) | Detailed description of the variant.               |
+| bill_of_materialsid| Integer(10)  | Foreign Key, References bill_of_materials(id).      |
+
+6. Table: bill_of_materials
+
+| Column   | Type         | Description                                       |
+|----------|--------------|---------------------------------------------------|
+| id       | Integer(10)  | Primary Key, Unique identifier for the BOM.       |
+| quantity | Integer(10)  | Quantity of the materials required for the product.|
+
+7. Table: bill_of_operations
+
+| Column       | Type         | Description                                       |
+|--------------|--------------|---------------------------------------------------|
+| id           | Integer(10)  | Primary Key, Unique identifier for the BOO.       |
+| description  | Varchar(255) | Description of the bill of operations.            |
+| variantid    | Integer(10)  | Foreign Key, References variants(id).             |
+
+8. Table: operation_bill_of_operations
+
 | Column          | Type         | Description                                       |
 |-----------------|--------------|---------------------------------------------------|
-| id              | Integer(10)  | Primary Key, Unique identifier for the operator.  |
-| name            | Varchar(100) | The name of the operator.                         |
-| specialization  | Varchar(100) | The area of specialization of the operator.       |
-| work_shift      | Varchar(50)  | The work shift (e.g., day, night) of the operator.|
- 
-4. Table: manufacturing_steps
- 
-| Column          | Type         | Description                                          |
-|-----------------|--------------|------------------------------------------------------|
-| id              | Integer(10)  | Primary Key, Unique identifier for the step.         |
-| name            | Varchar(100) | The name of the manufacturing step.                  |
-| duration        | Integer(5)   | The estimated duration of the step (in hours).       |
-| status          | Varchar(50)  | The current status (e.g., pending, completed).       |
- 
-5. Table: products
- 
-| Column          | Type         | Description                                      |
-|-----------------|--------------|--------------------------------------------------|
-| id              | Integer(10)  | Primary Key, Unique identifier for the product.  |
-| name            | Varchar(100) | The name of the product.                         |
-| description     | Varchar(255) | Detailed description of the product.             |
-| price           | Decimal(10,2)| The price of the product.                        |
- 
-6. Table: operations
- 
-| Column               | Type         | Description                                           |
-|----------------------|--------------|-------------------------------------------------------|
-| id                   | Integer(10)  | Primary Key, Unique identifier for the operation.     |
-| name                 | Varchar(100) | The name of the operation performed.                  |
-| id_product           | Integer(10)  | Foreign Key, References products(id).                 |
-| id_manufacturing_step| Integer(10)  | Foreign Key, References manufacturing_steps(id).      |
- 
-7. Table: association_of_operations
- 
-| Column               | Type         | Description                                          |
-|----------------------|--------------|------------------------------------------------------|
-| id                   | Integer(10)  | Primary Key, Unique identifier for the association.  |
-| id_client            | Integer(10)  | Foreign Key, References clients(id).                 |
-| id_product           | Integer(10)  | Foreign Key, References products(id).                |
-| id_manufacturing_step| Integer(10)  | Foreign Key, References manufacturing_steps(id).     |
- 
-8. Table: workstation
- 
-| Column          | Type         | Description                                      |
-|-----------------|--------------|--------------------------------------------------|
+| id              | Integer(10)  | Primary Key, Unique identifier for the operation of the BOO. |
+| type_of_operation | Varchar(255) | The type of operation (e.g., Cutting, Welding).  |
+| estimated_time  | Integer(10)  | Estimated time (in minutes) for the operation.    |
+| bill_of_operationsid | Integer(10) | Foreign Key, References bill_of_operations(id). |
+
+9. Table: operation_manufacturing_orders
+
+| Column                      | Type         | Description                                       |
+|-----------------------------|--------------|---------------------------------------------------|
+| id                           | Integer(10)  | Primary Key, Unique identifier for the operation of the manufacturing order. |
+| start_date                   | Timestamp    | Start date of the operation.                      |
+| end_date                     | Timestamp    | End date of the operation.                        |
+| status                       | Integer(10)  | Status of the operation.                          |
+| manufacturing_ordersid        | Integer(10)  | Foreign Key, References manufacturing_orders(id).  |
+| operation_bill_of_operationsid| Integer(10)  | Foreign Key, References operation_bill_of_operations(id). |
+
+10. Table: execution_of_operations
+
+| Column                   | Type         | Description                                       |
+|--------------------------|--------------|---------------------------------------------------|
+| id                        | Integer(10)  | Primary Key, Unique identifier for the execution of an operation. |
+| start_date                | Timestamp    | The start date of the execution.                  |
+| end_date                  | Timestamp    | The end date of the execution.                    |
+| status                    | Integer(10)  | Status of the operation execution.                |
+| workstationid             | Integer(10)  | Foreign Key, References workstation(id).          |
+| operation_manufacturing_ordersid | Integer(10) | Foreign Key, References operation_manufacturing_orders(id). |
+
+11. Table: workstation
+
+| Column          | Type         | Description                                       |
+|-----------------|--------------|---------------------------------------------------|
 | id              | Integer(10)  | Primary Key, Unique identifier for the workstation. |
-| location        | Varchar(255) | The physical location of the workstation.        |
-| id_operation    | Integer(10)  | Foreign Key, References operations(id).          |
- 
-9. Table: operation_manufacturing_steps
- 
-| Column               | Type         | Description                                          |
-|----------------------|--------------|------------------------------------------------------|
-| id                   | Integer(10)  | Primary Key, Unique identifier for the relationship. |
-| id_operation         | Integer(10)  | Foreign Key, References operations(id).              |
-| id_manufacturing_step| Integer(10)  | Foreign Key, References manufacturing_steps(id).     |
- 
-10. Table: operator_has_operations
- 
-| Column          | Type         | Description                                           |
-|-----------------|--------------|-------------------------------------------------------|
-| id              | Integer(10)  | Primary Key, Unique identifier for the relationship.  |
-| id_operator     | Integer(10)  | Foreign Key, References operators(id).                |
-| id_operation    | Integer(10)  | Foreign Key, References operations(id).               |
-| id_workstation   | Integer(10)  | Foreign Key, References workstation(id).             |
+| name            | Varchar(255) | The name of the workstation.                      |
+| description     | Varchar(255) | Detailed description of the workstation.          |
+| time            | Integer(10)  | Time allocated for the workstation.               |
+| workstation_typesid | Integer(10) | Foreign Key, References workstation_types(id).   |
+
+12. Table: workstation_operations
+
+| Column                      | Type         | Description                                       |
+|-----------------------------|--------------|---------------------------------------------------|
+| operation_bill_of_operationsid | Integer(10) | Foreign Key, References operation_bill_of_operations(id). |
+| workstation_typesid          | Integer(10)  | Foreign Key, References workstation_types(id).     |
+
+13. Table: workstation_types
+
+| Column      | Type         | Description                                      |
+|-------------|--------------|--------------------------------------------------|
+| id          | Integer(10)  | Primary Key, Unique identifier for the workstation type. |
+| name        | Varchar(255) | The name of the workstation type.                |
+| description | Varchar(255) | Detailed description of the workstation type.    |
