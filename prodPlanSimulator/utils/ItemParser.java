@@ -15,7 +15,7 @@ public class ItemParser implements DataParser<ItemModel> {
             String article = data[0].trim();
             String priority = data[1].trim();
             LinkedList nameOperations = new LinkedList();
-            // As operações começam a partir do índice 2
+            // The Operations are from index 2 to the end of the array
             for (int i = 2; i < data.length; i++) {
                 if (!data[i].trim().isEmpty()) {
                     nameOperations.add(data[i].trim());
