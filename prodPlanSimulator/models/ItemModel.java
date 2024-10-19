@@ -6,20 +6,20 @@ public class ItemModel {
     private static int idnext = 1;
     private int id;
     private String articleId;
-    private String prioraty;
+    private String priority;
     private LinkedList<String> operation;
 
     /**
      * Constructor for ItemModel
      *
      * @param id
-     * @param prioraty
+     * @param priority
      * @param operation
      */
-    public ItemModel(String articleId, String prioraty, LinkedList<String> operation) {
+    public ItemModel(String articleId, String priority, LinkedList<String> operation) {
         this.id = idnext++;
         this.articleId = articleId;
-        this.prioraty = prioraty;
+        this.priority = priority;
         this.operation = operation;
     }
 
@@ -42,12 +42,12 @@ public class ItemModel {
     }
 
     /**
-     * Getter for prioraty
+     * Getter for priority
      *
-     * @return prioraty of item
+     * @return priority of item
      */
-    public String getPrioraty() {
-        return prioraty;
+    public String getPriority() {
+        return priority;
     }
 
     /**
@@ -75,7 +75,7 @@ public class ItemModel {
         return "ItemModel{" +
                 "ID='" + id + '\'' +
                 ", articleId='" + articleId + '\'' +
-                ", prioraty='" + prioraty + '\'' +
+                ", priority='" + priority + '\'' +
                 ", operation='" + operation + '\'' +
                 '}';
     }
