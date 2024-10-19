@@ -6,26 +6,26 @@ This project focuses on developing a software solution for managing production p
 ## Problem Statement
 The primary goal is to create a software application that effectively tackles the complexities of planning, managing, and controlling production processes. This includes:
 
-- **Product Engineering**: Managing the structure of the facility, including products, machines, operations, and layouts.
+- **Product Engineering**: Managing the structure of the facility, including products, machines, operationModels, and layouts.
 - **Production Planning**: Processing customer orders and generating production orders.
-- **Production Control**: Supervising machine operations and scheduling preventive maintenance.
+- **Production Control**: Supervising machine operationModels and scheduling preventive maintenance.
 
 ## Key Features
 - **User-friendly Interface**: Intuitive design for easy navigation.
 - **Production Planning Tools**: Efficient order processing and production order generation.
-- **Real-time Monitoring**: Oversight of machine operations for enhanced control.
+- **Real-time Monitoring**: Oversight of machine operationModels for enhanced control.
 - **Maintenance Scheduling**: Preventive maintenance management to minimize downtime.
 
 ## Architecture
-The system architecture consists of several interconnected components, including the use of **Java** for backend logic, **C & Assembly** for machine communication, and **Oracle PL/SQL** for database operations. The system uses **CSV files** for importing/exporting data and **ODBC** for database connectivity.
+The system architecture consists of several interconnected components, including the use of **Java** for backend logic, **C & Assembly** for machine communication, and **Oracle PL/SQL** for database operationModels. The system uses **CSV files** for importing/exporting data and **ODBC** for database connectivity.
 
 ## Architecture Diagram
 (Insert your architecture diagram here)
 
 ## Modules
-- **Java-based applications** for managing production and plant operations.
+- **Java-based applications** for managing production and plant operationModels.
 - **Machine supervision** using Raspberry Pi and text file communication.
-- **Oracle PL/SQL** for managing databases and plant-floor operations.
+- **Oracle PL/SQL** for managing databases and plant-floor operationModels.
 
 ## Technologies Used
 - **Java**: Core business logic.
@@ -38,7 +38,7 @@ The system architecture consists of several interconnected components, including
 
 
 ## Modules Description
-- **Machine Supervisor**: Supervise and monitor machine operations using sensors and actuators via Raspberry Pi.
+- **Machine Supervisor**: Supervise and monitor machine operationModels using sensors and actuators via Raspberry Pi.
 - **Plant Floor Manager**: Manages the production tasks and machine workflows on the shop floor.
 - **Production Plan Simulator**: Simulates production scenarios for planning and resource optimization.
 - **Project Manager**: Manages project-related tasks, schedules, and overall production workflow.

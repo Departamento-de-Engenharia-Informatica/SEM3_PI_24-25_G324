@@ -1,21 +1,26 @@
 package prodPlanSimulator.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MachineModel {
     private String workstation;
-    private String nameOperation;
+    private OperationModel nameOperationModel;
     private int time;
+    private static List<MachineModel> allMachines = new ArrayList<>();
 
     /**
      * Constructor for MachineModel
      *
      * @param workstation
-     * @param nameOperation
+     * @param nameOperationModel
      * @param time
      */
-    public MachineModel(String workstation, String nameOperation, int time) {
+    public MachineModel(String workstation, OperationModel nameOperationModel, int time) {
         this.workstation = workstation;
-        this.nameOperation = nameOperation;
+        this.nameOperationModel = nameOperationModel;
         this.time = time;
+        allMachines.add(this);
     }
 
     /**
@@ -32,8 +37,8 @@ public class MachineModel {
      *
      * @return name Operation of workstation
      */
-    public String getNameOperation() {
-        return nameOperation;
+    public OperationModel getNameOperation() {
+        return nameOperationModel;
     }
 
     /**
@@ -46,6 +51,22 @@ public class MachineModel {
     }
 
     /**
+     * Get a list of All Machines
+     *
+     * @return allMachines
+     */
+    public static List<MachineModel> getAllMachines() {
+        return allMachines;
+    }
+
+    /**
+     * Reset all machines
+     */
+    public static void reset() {
+        allMachines.clear();
+    }
+
+    /**
      * toString method for MachineModel
      *
      * @return String of MachineModel
@@ -54,7 +75,7 @@ public class MachineModel {
     public String toString() {
         return "MachineModel{" +
                 "Workstation='" + workstation + '\'' +
-                ", name of operation='" + nameOperation + '\'' +
+                ", name of operation='" + nameOperationModel + '\'' +
                 ", time=" + time +
                 '}';
     }

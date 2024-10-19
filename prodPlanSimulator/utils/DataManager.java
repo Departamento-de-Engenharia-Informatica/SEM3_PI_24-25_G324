@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 import prodPlanSimulator.models.ItemModel;
+import prodPlanSimulator.models.OperationModel;
 
 public class DataManager<T> {
     private Map<String, List<T>> dataMap;
@@ -78,6 +79,10 @@ public class DataManager<T> {
                 manager.dataMap.put(type, new LinkedList<>());
                 System.out.println(type + " list cleared");
 
+                if(type.equalsIgnoreCase("machines")){
+                    OperationModel.reset();
+                    System.out.println("OperationModel reset");
+                }
                 if (type.equalsIgnoreCase("items")) {
                     ItemModel.resetId();
                     System.out.println("ItemModel ID reset");

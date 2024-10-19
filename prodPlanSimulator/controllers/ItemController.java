@@ -1,10 +1,7 @@
 package prodPlanSimulator.controllers;
 
 import prodPlanSimulator.models.ItemModel;
-import prodPlanSimulator.models.MachineModel;
 import prodPlanSimulator.utils.DataManager;
-
-import java.util.Scanner;
 
 public class ItemController {
 

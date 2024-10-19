@@ -76,17 +76,17 @@ This document provides an overview of the tables and their associated fields use
 ### 10. Table: `billOfOperations`
 | Column          | Type          | Description                                     |
 |-----------------|---------------|-------------------------------------------------|
-| `id`            | Integer(10)   | Primary Key, Unique identifier for the bill of operations. |
-| `sequenceOrder` | Integer(10)   | The order in which operations should be performed. |
+| `id`            | Integer(10)   | Primary Key, Unique identifier for the bill of operationModels. |
+| `sequenceOrder` | Integer(10)   | The order in which operationModels should be performed. |
 | `productId`     | Integer(10)   | Foreign Key, Links to product, identifies the product. |
-| `operationId`   | Integer(10)   | Foreign Key, Links to operation, identifies the operation to be performed. |
+| `operationId`   | Integer(10)   | Foreign Key, Links to operationModel, identifies the operationModel to be performed. |
 
-### 11. Table: `operation`
+### 11. Table: `operationModel`
 | Column          | Type          | Description                                     |
 |-----------------|---------------|-------------------------------------------------|
-| `id`            | Integer(10)   | Primary Key, Unique identifier for an operation. |
-| `name`          | Varchar(255)  | The name of the operation.                      |
-| `stationId`     | Integer(10)   | Foreign Key, Links to station, identifies the station where the operation is performed. |
+| `id`            | Integer(10)   | Primary Key, Unique identifier for an operationModel. |
+| `name`          | Varchar(255)  | The name of the operationModel.                      |
+| `stationId`     | Integer(10)   | Foreign Key, Links to station, identifies the station where the operationModel is performed. |
 
 ### 12. Table: `station`
 | Column          | Type          | Description                                     |
